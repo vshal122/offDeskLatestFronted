@@ -1,0 +1,65 @@
+<div style="text-align: center;" class="containers">
+         <mat-card>
+           <mat-card-content>
+         <form (ngSubmit)="registerNow()" #myForm="ngForm">
+        <h3>REGISTER HERE</h3>
+        <div>
+        <mat-form-field class="mat-form-d" appearance="outline" required>
+            <mat-label>User Name</mat-label>
+            <input type="text"  matInput  placeholder="User name"  name="userName" [(ngModel)]="user.userName"  required>
+        </mat-form-field>
+        </div>
+         <mat-form-field  class="mat-form-d" appearance="outline" required>
+            <mat-label>Select Designation</mat-label>
+            <mat-select name="designation" [(ngModel)]="user.designation">
+              <mat-option value="Manager">Manager</mat-option>
+              <mat-option value="Developer">Developer</mat-option>
+            </mat-select>
+          </mat-form-field>
+         <mat-form-field  class="mat-form-d" appearance="outline"  >
+            <mat-label>Address</mat-label>
+            <input  matInput  placeholder="Address" [(ngModel)]="user.address" name="address"  required>
+         </mat-form-field>
+         <mat-form-field  class="mat-form-d" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input  matInput type="email" placeholder="Email"  [(ngModel)]="user.email" name="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required>
+         </mat-form-field>
+         <mat-form-field  class="mat-form-d" appearance="outline" >
+            <mat-label>Mobile</mat-label>
+            <input  matInput   placeholder="Mobile" [(ngModel)]="user.mobile"  [maxlength]="10" [minlength]="10" pattern="^[6-9][0-9]{9}$" name="mobile" required>
+         </mat-form-field>
+        <mat-form-field  class="mat-form-d" appearance="outline" required>
+            <mat-label>Password</mat-label>
+            <input type="password" matInput  placeholder="Password" [(ngModel)]="user.password" name="password" required>
+         </mat-form-field>
+         <mat-form-field  class="mat-form-d" appearance="outline" >
+            <mat-label>ManagerEmail</mat-label>
+           <mat-select name="managerUsername" (click)="getAllManager()"   [(ngModel)]="user.managerUsername"  required>
+               <mat-option  *ngFor="let item of AllManager" [value]="item" >{{item}}</mat-option>
+               <mat-option value="null">None</mat-option>
+             </mat-select>
+           </mat-form-field>
+         
+           
+           <mat-form-field appearance="outline" class="mat-form-d" required>
+            <mat-label>Select Gender</mat-label>
+            <mat-select name="gender" [(ngModel)]="user.gender" required>
+              <mat-option value="Male">Male</mat-option>
+              <mat-option value="Female">Female</mat-option>
+              <mat-option value="Other">Other</mat-option>
+            </mat-select>
+        </mat-form-field>
+       <mat-form-field   class="mat-form-d" appearance="outline" required>
+             <mat-label>Joining Date</mat-label>
+         <input matInput [matDatepicker]="picker"[(ngModel)]="user.joinDate"   name="joindate"   placeholder="date" required>
+         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+         <mat-datepicker #picker></mat-datepicker>
+       </mat-form-field>
+     
+      <mat-card-actions>
+        <button  [disabled]="myForm.invalid" mat-raised-button type="submit" color="primary">REGISTER</button>
+      </mat-card-actions>
+ </form>
+     </mat-card-content>
+   </mat-card>
+  </div>

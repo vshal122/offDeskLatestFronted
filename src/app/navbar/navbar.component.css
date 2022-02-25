@@ -1,0 +1,14 @@
+.example-spacer{
+    right: 5px;
+   flex: 1 1 auto;
+}
+.drawer-container{
+    height: 100%;
+    width: 100%;
+    color: black;
+    background-color: rgb(126, 184, 202);
+    
+  }
+
+
+ 

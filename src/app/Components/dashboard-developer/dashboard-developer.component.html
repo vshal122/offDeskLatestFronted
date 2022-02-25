@@ -1,0 +1,103 @@
+<div>
+    <mat-card>
+        <h2>!! Welcome To Developer Panel !!</h2>
+        <button class="button-style" mat-raised-button color="white" (click)="checkLeaveBalance()">My Leave History</button>
+        <button class="button-style"   mat-raised-button color="white" (click)="InleaveForm()"  >Apply for leave</button>
+        <button class="button-style"   mat-raised-button color="white" (click)="checkLeaveRecord()"  >Check Your Leave Record</button>
+       <a routerLink="/SendMail"><button class="button-style"   mat-raised-button color="white" >Send Mail</button></a> 
+       <a href="https://mail.google.com/mail/u/0/#inbox"><button class="button-style"   mat-raised-button color="white" >See Notification</button></a> 
+    </mat-card>
+    <div *ngIf="!tempVar && !tempVar2 && !tempVar3" >  
+        <img    src="assets\undraw_welcome_cats_thqn.svg" style="width: 30%; margin-left: 400px; margin-top: 80px;">
+       </div>
+
+  <!--Leave Record Details  -->
+    <div *ngIf="tempVar">
+        <mat-card>
+            <ng-template ngIf="leaveRecord.length!=0">
+                <table id="customers">
+                    <tr>
+                     <th>FromDate</th>
+                     <th>EndDate</th>
+                     <th>LeaveStatus</th>
+                     <th>LeaveBalance</th>
+                     <th>TotalLeave</th>
+                    </tr>
+                    <tr *ngFor="let leave of leaveRecord">
+                     <td>{{leave?.fromDate}}</td>
+                     <td>{{leave.endDate}}</td>
+                     <td>{{leave.leaveStatus}}</td>
+                     <td>{{leave.leaveBalance}}</td>
+                     <td>{{leave?.totalLeave}}</td>
+                    </tr>
+                </table>
+            </ng-template>
+           </mat-card>
+
+    </div>
+
+     <!--Leave Record Details Form   -->
+     <div *ngIf="tempVar2">
+        <mat-card class="mat-card-leave">
+            <mat-card-content>
+              <form (ngSubmit)="leaveSubmit()">
+                <h2>Take Your Leave</h2>
+            <mat-form-field  appearance="outline" >
+             <mat-label>Start Date of Leave</mat-label>
+           <input matInput [matDatepickerFilter]="weekendsDatesFilter"   [matDatepicker]="picker"    name="fromDate"     [(ngModel)]="leavedetails.fromDate"  [min]="minDate" placeholder="Choose date" >
+           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+           <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field  appearance="outline" required>
+              <mat-label>End Date of Leave</mat-label>
+              <input matInput [matDatepickerFilter]="weekendsDatesFilter" [matDatepicker]="picker1"   name="endDate"  [(ngModel)]="leavedetails.endDate" [min]="minDate"  placeholder="Choose date" >
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field   appearance="outline">
+                <mat-label>Purpose for Leave</mat-label>
+                <input  matInput  placeholder="Manager" [(ngModel)]="leavedetails.leavePurpose"  name="leavePurpose"  required>
+             </mat-form-field>
+                   <button mat-raised-button color="primary">Submit</button>
+              </form>
+        </mat-card-content>
+          </mat-card>
+        </div>
+
+
+
+        <div *ngIf="tempVar3">
+            <mat-card>
+                <ng-template ngIf="checkRecord.length!=0">
+                    <table id="customers">
+                        <tr>
+                         <th>LeaveBalance</th>
+                         <th>ExtraLeave</th>
+                         <th>TakenLeave</th>
+                         <th>TotalLeave</th>
+                        </tr>
+                        <tr>
+                         <td>{{checkRecord.leaveBalance}}</td>
+                         <td>{{checkRecord.extraLeave}}</td>
+                         <td>{{checkRecord.takenLeave}}</td>
+                         <td>{{checkRecord.totalLeave}}</td>
+                        </tr>
+                    </table>
+                </ng-template>
+               </mat-card>
+    
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

@@ -1,0 +1,41 @@
+<div class="bootstrap-wrapper">
+       <mat-card>
+       <h2>!! Welcome to Admin Panel !!</h2>
+      
+       <button class="button-d" mat-raised-button color="white" (click)="getUserProfile()" >List Of Employees</button>
+       <button class="button-d" mat-raised-button color="white" routerLink="/registraion">Employee Registration</button>
+       </mat-card>
+       <div *ngIf="!tempuserData">  
+        <img    src="assets\undraw_welcome_cats_thqn.svg" style="width: 30%; margin-left: 400px; margin-top: 80px;">
+       </div>
+       
+       
+  </div>
+  <div *ngIf="tempuserData">
+  <mat-card>
+   <ng-template ngIf="allProfiles.length != 0">
+       <table id="customers">
+           <tr>
+            <th>UserId</th>
+            <th>Username</th>
+            <th>email</th>
+            <th>gender</th>
+            <th>joinDate</th>
+            <th>mobile</th>
+            <th>designation</th>
+            
+           </tr>
+           <tr *ngFor="let user of allProfiles">
+            <td>UI-{{user.userId}}</td>
+            <td>{{user.userName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.gender}}</td>
+            <td>{{user.joinDate }}</td>
+            <td>{{user.mobile}}</td>
+            <td>{{user.designation}}</td>
+           
+           </tr>
+       </table>
+   </ng-template>
+  </mat-card>
+ </div>
